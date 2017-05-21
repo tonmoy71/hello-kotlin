@@ -1,19 +1,23 @@
-class Customer(var id: String, var name: String, var email: String = "default@domain.com") {
-	// Kotlin doesn't have any concept of field, 
-	// all it have are property
-	init{
-		name = name.toUpperCase()
-	}
-	
-	constructor(_email: String) : this("001", "What's my name?") {
-		email = _email.toLowerCase()
-	}
+import java.util.*
+
+class Customer(var id: String, var name: String, val yearOfBirth: Int) {
+	val age: Int
+		get() = Calendar.getInstance().get(Calendar.YEAR) - yearOfBirth
+
+	var socialSecurityNumber: String = ""
+		set(value) {
+			if(!value.startsWith("SN")){
+				throw IllegalArgumentException("Social Security Number must start with SN")
+			}
+			field = value
+
+		}
+
 }
 
 fun main(args: Array<String>){
-	val customer = Customer(name = "Fahim Masud Choudhury", id = "BD00055")
-	val customer2 = Customer("FAHIM@GMAIL.COM")
+	val customer = Customer("001", "Fahim", 1990)
+	customer.socialSecurityNumber = "SN123"
+	println("Name: ${customer.name}, ID: ${customer.id}, SSN: ${customer.socialSecurityNumber}, Age: ${customer.age}")
 	
-	println("Name: ${customer.name}, id: ${customer.id}")
-	println("Name: ${customer.name}, id: ${customer.id}, email: ${customer2.email}")
 }
