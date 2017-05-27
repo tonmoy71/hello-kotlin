@@ -16,6 +16,10 @@ class Customer() {
 			}
 			field = value
 		}
+
+	fun showCustomerInfo(): String {
+		return "Name: $name, age: $age"
+	}
 }
 		
 
@@ -26,7 +30,7 @@ fun main(args: Array<String>){
 	customer.name = "Fahim"
 	customer.age = 10
 
-	println("${customer.name}, ${customer.age}")
+	println(customer.showCustomerInfo())
 
 }
 
