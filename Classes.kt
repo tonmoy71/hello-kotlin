@@ -1,23 +1,39 @@
 import java.util.*
 
-class Customer(var id: String, var name: String, val yearOfBirth: Int) {
-	val age: Int
-		get() = Calendar.getInstance().get(Calendar.YEAR) - yearOfBirth
-
-	var socialSecurityNumber: String = ""
+class Customer() {
+	var name: String = ""		// property must be initialized
 		set(value) {
-			if(!value.startsWith("SN")){
-				throw IllegalArgumentException("Social Security Number must start with SN")
+			if (value.length == 0){
+				throw IllegalArgumentException("name can't be empty")
 			}
 			field = value
-
 		}
 
+	var age: Int = 1
+		set(value) {
+			if (value <= 0){
+				throw IllegalArgumentException("age can't be negative or zero")
+			}
+			field = value
+		}
 }
+		
+
+
 
 fun main(args: Array<String>){
-	val customer = Customer("001", "Fahim", 1990)
-	customer.socialSecurityNumber = "SN123"
-	println("Name: ${customer.name}, ID: ${customer.id}, SSN: ${customer.socialSecurityNumber}, Age: ${customer.age}")
-	
+	val customer = Customer()
+	customer.name = "Fahim"
+	customer.age = 10
+
+	println("${customer.name}, ${customer.age}")
+
 }
+
+	
+
+
+
+
+
+
